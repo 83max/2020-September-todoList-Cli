@@ -124,7 +124,7 @@
 
         const encode = btoa(arrayStringify);
 
-        const myUrl = new URL ("2020-september-todolist-cli.vercel.app");
+        const myUrl = new URL ("https://2020-september-todolist-cli.vercel.app/");
         myUrl.hash = encode;
         window.location = myUrl;
 
