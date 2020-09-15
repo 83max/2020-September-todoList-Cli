@@ -91,6 +91,14 @@
       todoArrayShow: {
         handler: function (newValue) {
 
+          const arrayStringify = JSON.stringify(this.todoArrayShow);
+
+          const encode = btoa(arrayStringify);
+
+          const myUrl = new URL ("https://2020-september-todolist-cli.vercel.app/");
+          myUrl.hash = encode;
+          window.location = myUrl;
+
           localStorage.setItem("todoArrayShow", JSON.stringify(newValue));
         },
         deep: true
@@ -161,6 +169,14 @@
       deleteExactTodo(){
         this.todoArrayShow = this.todoArrayShow.filter((item) => item.id !== this.passIdDeleteExactTodo);
 
+        const arrayStringify = JSON.stringify(this.todoArrayShow);
+
+        const encode = btoa(arrayStringify);
+
+        const myUrl = new URL ("https://2020-september-todolist-cli.vercel.app/");
+        myUrl.hash = encode;
+        window.location = myUrl;
+
         localStorage.setItem("todoArrayShow", JSON.stringify(this.todoArrayShow));
 
         this.yesNoShow = false
@@ -184,6 +200,14 @@
         const findExactId = this.todoArrayShow.find(i => i.id === this.passId)
         findExactId.text = this.x
 
+        const arrayStringify = JSON.stringify(this.todoArrayShow);
+
+        const encode = btoa(arrayStringify);
+
+        const myUrl = new URL ("https://2020-september-todolist-cli.vercel.app/");
+        myUrl.hash = encode;
+        window.location = myUrl;
+
         localStorage.setItem("todoArrayShow", JSON.stringify(this.todoArrayShow));
 
         this.changeIsContentEditable()
@@ -192,13 +216,20 @@
       }
     },
     created(){
-      const localStorageItems = JSON.parse(localStorage.getItem("todoArrayShow"));
+      const decode = JSON.parse(atob (window.location.hash.substring(1)));
 
-      if (localStorageItems) {
-          this.todoArrayShow = localStorageItems;
+      if (decode) {
+        this.todoArrayShow = decode;
       }
 
       localStorage.setItem("todoArrayShow", JSON.stringify(this.todoArrayShow));
+      // const localStorageItems = JSON.parse(localStorage.getItem("todoArrayShow"));
+      //
+      // if (localStorageItems) {
+      //     this.todoArrayShow = localStorageItems;
+      // }
+      //
+      // localStorage.setItem("todoArrayShow", JSON.stringify(this.todoArrayShow));
     }
 
   }
