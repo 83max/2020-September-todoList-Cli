@@ -2,7 +2,7 @@
 
   <div class="div-count">
     <div class="line-through-count" v-bind:class=" {lineThroughShow: isLineThroughShow } "></div>
-    <div class="count"> {{completedTodos.length}} / {{remainingTodos.length}}
+    <div class="count" v-if="remainingTodos.length !== 0 || completedTodos.length !== 0"> {{completedTodos.length}} / {{remainingTodos.length}}
       (<span
         v-bind:class="
         `${percentageCalcColor === 0 ? 'percentageBlack' :
