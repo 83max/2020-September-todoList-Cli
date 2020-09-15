@@ -1,7 +1,7 @@
 <template>
 
   <div class="div-count">
-    <div class="line-through-count" v-bind:class=" {lineThroughShow: isLineThroughShow } "></div>
+    <div class="line-through-count" v-if="remainingTodos.length !== 0 || completedTodos.length !== 0" v-bind:class=" {lineThroughShow: isLineThroughShow } "></div>
     <div class="count" v-if="remainingTodos.length !== 0 || completedTodos.length !== 0"> {{completedTodos.length}} / {{remainingTodos.length}}
       (<span
         v-bind:class="
